@@ -4,22 +4,22 @@ import Book from "../components/Book";
 
 export default function DiscoverPage() {
   return (
-    <div>
-      <form className="flex items-center justify-between ml-3 mr-2 mb-8 bg-mercury bg-opacity-40 p-2 hover:shadow-card">
+    <div className="mx-5 md:mx-0">
+      <form className="flex items-center justify-between m-0 md:ml-3 md:mr-2 mb-8 bg-mercury bg-opacity-40 p-2 hover:shadow-card">
         <input type="text" required  className="w-full bg-transparent focus:outline-none" placeholder="Search books..."/>
         <button type="submit" className="bg-transparent p-2 w-22">
           <FaSearch />
         </button>
       </form>
-      <ul className="list-style-none grid px-2 gap-8">
-        {books.map(book => <Book book={book} />)}
+      <ul className="list-style-none grid px-2 gap-y-8">
+        {books.map(book => <Book key={book.id} book={book} />)}
       </ul>
     </div>
   );
 }
 
 
-const books: IBook[] = [
+export const books: IBook[] = [
   {
     id: "1",
     volumeInfo: {

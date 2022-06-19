@@ -11,6 +11,7 @@ module.exports = {
       },
       spacing: {
         1: "2px",
+        100: "100px",
         140: "140px",
         250: "250px",
         840: "840px",
@@ -19,6 +20,7 @@ module.exports = {
         layout: "1fr 3fr",
         "layout-sm": "1fr",
         books: "140px 1fr",
+        "books-sm": "100px 1fr",
       },
       gridTemplateRows: {
         "layout-sm": "auto",

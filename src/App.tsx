@@ -8,8 +8,8 @@ import './App.css';
 
 function App() {
   return (
-   <div className='grid grid-cols-layout-sm sm:grid-cols-layout w-full mx-auto max-w-840 mt-10'>
-     <div className='relative'>
+   <div className='grid grid-cols-layout-sm md:grid-cols-layout w-full mx-4 md:mx-auto max-w-840 mt-2 md:mt-10'>
+     <div className='relative mb-5 md:mb-0 mx-5 md:mx-0'>
        <Nav />
      </div>
      <main className='w-full'>
@@ -22,7 +22,7 @@ function App() {
 function AppRoutes () {
   return <Routes>
       <Route path='/discover' element={<DiscoverPage />} />
-      <Route path='/book/:bookId' element={<BookPage />} />
+      <Route path='/books/:bookId' element={<BookPage />} />
       <Route path='/list' element={<ReadingListPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
