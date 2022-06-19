@@ -1,26 +1,22 @@
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
+import Book from './screens/Book';
+import Discover from './screens/Discover';
+import NotFound from './screens/NotFound';
+import ReadingList from './screens/ReadingList';
 
-const GradientText = ({ text }: {
-  text: string;
-}) => {
-  return (
-    <div className="p-10 min-h-screen flex items-center justify-center bg-cool-gray-700">
-      <h1 className="text-9xl font-black text-white text-center">
-        <span className="bg-gradient-to-r text-transparent bg-clip-text from-green-400 to-purple-500">
-          {text}
-        </span>
-      </h1>
-    </div>
-  );
-};
 
 
 function App() {
-  
   return (
-    <div className="App">
-      <GradientText text='Popcorn Books' />
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/discover' element={<Discover />} />
+        <Route path='/book/:bookId' element={<Book />} />
+        <Route path='/list' element={<ReadingList />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
