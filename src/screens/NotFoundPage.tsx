@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return <div
     className="h-screen w-full grid items-center justify-center"
   >

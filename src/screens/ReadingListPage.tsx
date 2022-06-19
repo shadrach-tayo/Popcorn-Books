@@ -1,5 +1,5 @@
 import GradientText from "../components/GradientText";
 
-export default function ReadingList() {
+export default function ReadingListPage() {
   return <GradientText text="Reading List" />
 }
