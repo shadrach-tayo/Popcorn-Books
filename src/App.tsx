@@ -25,6 +25,7 @@ function AppRoutes () {
       <Route path='/book/:bookId' element={<Book />} />
       <Route path='/list' element={<ReadingList />} />
       <Route path='*' element={<NotFound />} />
+      {/* <Route path='/' element={<Discover />} /> */}
     </Routes>
 }
 
