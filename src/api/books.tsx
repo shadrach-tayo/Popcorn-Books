@@ -1,9 +1,12 @@
+import { useCallback } from "react";
 import { useQuery, QueryClient } from "react-query";
+import useLocalStorageState from "../hooks/useLocalstorage";
 import { client } from "./client";
-import { APIKEY, API_URL } from "./constants";
+import { APIKEY, API_URL, SEARCH_KEY } from "./constants";
 import { IBook } from "./types";
 
 export const queryClient = new QueryClient();
+
 
 enum tags {
   book = "book",
@@ -31,21 +34,23 @@ export const booksPlaceHolder: IBook[] = Array.from({ length: 5 }).map(
 );
 
 export function useBook(bookId: string) {
+  const url = `${API_URL}/${bookId}?key=${APIKEY}`;
   const result = useQuery<IBook, any>({
     queryKey: [tags.book, { bookId }],
-    queryFn: () => client(`${API_URL}/${bookId}?key=${APIKEY}`),
-    placeholderData: bookPlaceholder,
+    queryFn: () => client(url),
+    // placeholderData: bookPlaceholder,
     enabled: !!bookId,
   });
   const cached = queryClient.getQueryData([tags.book, { bookId }]) as IBook;
-  return { ...result, data: result.data ?? cached };
+  return { ...result, data: result.data ?? cached, isFetching: result.data ? false : result.isFetching };
 }
 
 function getSearchConfig(query: string) {
+  const url = `${API_URL}?key=${APIKEY}&q=${query}&maxResults=5`;
   return {
     queryKey: [tags.bookSearch, { query }],
     queryFn: () =>
-      client(`${API_URL}?key=${APIKEY}&q=${query}&maxResults=5`).then(
+      client(url).then(
         (data) => data?.items ?? []
       ),
     enabled: !!query,
@@ -65,5 +70,14 @@ function getSearchConfig(query: string) {
 
 export function useBookSearch(query: string) {
   const result = useQuery<IBook[], any>(getSearchConfig(query));
-  return { ...result, data: result.data };
+  const cached = queryClient.getQueryData([tags.bookSearch, {query}]) as IBook[]
+  return { ...result, data: result.data ?? cached, isFetching: result.data ? false : result.isFetching };
+}
+
+export function useRefetchBookSearchQuery() {
+  const [query] = useLocalStorageState(SEARCH_KEY, "");
+  return useCallback(() => {
+    queryClient.removeQueries([tags.bookSearch, { query }])
+    queryClient.prefetchQuery(getSearchConfig(query))
+  }, [query]);
 }

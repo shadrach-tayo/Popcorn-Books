@@ -1,17 +1,19 @@
-import { useState } from "react";
 import { FaSearch, FaSpinner } from "react-icons/fa";
 import { IoIosClose, IoIosCloseCircleOutline } from "react-icons/io";
 import { useBookSearch } from "../api/books";
+import { SEARCH_KEY } from "../api/constants";
 import Book from "../components/Book";
 import Loader from "../components/Loader";
 import useDebouncer from "../hooks/useDebounce";
+import useLocalStorageState from "../hooks/useLocalstorage";
 
 export default function DiscoverPage() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useLocalStorageState(SEARCH_KEY, "");
   const [queryKey] = useDebouncer(query, 500);
   const { data, isFetching, isError, isSuccess } = useBookSearch(queryKey);
 
   const clearSearch = () => query && setQuery("");
+
 
   return (
     <div className="mx-5 md:mx-0">
@@ -41,7 +43,7 @@ export default function DiscoverPage() {
       </form>
       {isFetching && <Loader />}
       {isSuccess && data?.length === 0 && <h2 className="text-center">No search results found!!!</h2>}
-      {!query && (
+      {!isFetching && !data && (
         <h2 className="text-center">
           Welcome to the Library, type in your search to continue...
         </h2>
