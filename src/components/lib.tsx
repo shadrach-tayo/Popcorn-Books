@@ -27,3 +27,7 @@ export function AppFallback({ error }: any) {
     </div>
   );
 }
+
+export function ErrorMessage({ error }: { error: string }) {
+  return <h2 className="text-center text-crimson">{error}</h2>
+}
