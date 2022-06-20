@@ -5,7 +5,7 @@ import ActionButton from "./ActionButton";
 export default function Book({ book }: { book: IBook }) {
   const {
     id,
-    volumeInfo: { title, publisher, description, authors, imageLinks },
+    volumeInfo: { title, publisher, description, authors = [], imageLinks },
   } = book;
   return (
     <div className="relative border-2 border-mercury border-opacity-40 p-2 rounded-lg hover:shadow-card">
