@@ -7,6 +7,11 @@ export function useGetListItem(id: string) {
   return list.find(book => book.id === id)
 }
 
+export function useGetList() {
+  const { list } = useGetter((state) => state.list);
+  return list
+}
+
 export function useAddListItem() {
   const dispatch = useSetter();
   const add = (book: IBook) => {
