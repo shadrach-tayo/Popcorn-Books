@@ -14,7 +14,6 @@ export default function DiscoverPage() {
 
   const clearSearch = () => query && setQuery("");
 
-
   return (
     <div className="mx-5 md:mx-0">
       <form className="flex items-center justify-between m-0 md:ml-3 md:mr-2 mb-8 bg-mercury bg-opacity-40 p-2 hover:shadow-card">

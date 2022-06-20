@@ -1,6 +1,6 @@
 import { IBook } from "../../api/types";
 import { useGetter, useSetter } from "../hooks";
-import { addBook, removeBook } from "./reducer";
+import { addBook, clear, removeBook } from "./reducer";
 
 export function useGetListItem(id: string) {
   const { list } = useGetter((state) => state.list);
@@ -28,4 +28,13 @@ export function useRemoveListItem() {
   }
 
   return remove;
+}
+
+export function useClearReadingList() {
+  const dispatch = useSetter();
+  const reset = () => {
+    dispatch(clear())
+  }
+
+  return reset;
 }
