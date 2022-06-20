@@ -35,6 +35,7 @@ module.exports = {
         cornflower: "#7B61FF",
         mercury: "#E5E5E5",
         sand: "#F4F4F4",
+        crimson: "#EF233C",
       },
     },
   },

@@ -1,14 +1,17 @@
 import { useCallback } from "react";
 
+const fetchError = "Failed to fetch";
+
 export function client(endpoint: string) {
   return window
     .fetch(endpoint)
     .then(async (response) => {
-      if (response.status > 200) return Promise.reject("An Error occured!!");
-      const data = response.json();
+      const data = await response.json();
+      if (response.status === 400) return Promise.reject(data?.error?.message ?? fetchError);
       if (response.ok) return data;
-      return Promise.reject(data);
-    });
+      return Promise.reject(fetchError);
+    })
+    
 }
 
 export function useClient(endpoint: string) {

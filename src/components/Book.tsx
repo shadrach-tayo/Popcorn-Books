@@ -22,7 +22,7 @@ export default function Book({ book }: { book: IBook }) {
           <p className="capitalize text-sm">{publisher}</p>
           <div className="h-28 overflow-hidden">
             <p className="text-sm h-140 overflow-hidden">
-              {description?.substring(0, 300)}...
+              {description ? `${description?.substring(0, 300)}...` : ''}
             </p>
           </div>
         </div>
