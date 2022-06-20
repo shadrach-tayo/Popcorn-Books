@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { booksPlaceHolder, useBook } from "../api/books";
+import { useBook } from "../api/books";
 import ActionButton from "../components/ActionButton";
 import Loader from "../components/Loader";
 
@@ -33,7 +33,7 @@ export default function BookPage() {
         </div>
       </div>
       <div className="absolute top-3 right-3 md:top-0 md:right-0 md:-mr-5 md:-mt-5">
-        <ActionButton book={booksPlaceHolder[0]} />
+        <ActionButton book={data} />
       </div>
     </div>
   );

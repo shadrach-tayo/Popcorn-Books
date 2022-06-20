@@ -7,6 +7,7 @@ export default function Book({ book }: { book: IBook }) {
     id,
     volumeInfo: { title, publisher, description, authors = [], imageLinks },
   } = book;
+
   return (
     <div className="relative border-2 border-mercury border-opacity-40 p-2 rounded-lg hover:shadow-card">
       <Link
@@ -22,7 +23,7 @@ export default function Book({ book }: { book: IBook }) {
           <p className="capitalize text-sm">{publisher}</p>
           <div className="h-28 overflow-hidden">
             <p className="text-sm h-140 overflow-hidden">
-              {description ? `${description?.substring(0, 300)}...` : ''}
+              {description ? `${description?.substring(0, 300)}...` : ""}
             </p>
           </div>
         </div>
