@@ -18,7 +18,10 @@ export default function Nav() {
     <nav className="static top-auto rounded-none w-full sm:sticky sm:top-4 py-2 md:py-5 px-4 border-2 border-mecury sm:rounded-md">
       <ul className="list-style-none p-0">
         <li>
-          <NavLink to="/list">Reading List</NavLink>
+          <NavLink to="/list">Reading</NavLink>
+        </li>
+        <li>
+          <NavLink to="/finished">Finished</NavLink>
         </li>
         <li>
           <NavLink to="/discover">Discover</NavLink>

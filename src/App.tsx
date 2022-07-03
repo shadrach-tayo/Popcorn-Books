@@ -3,6 +3,7 @@ import Nav from "./components/Nav";
 import DiscoverPage from "./screens/DiscoverPage";
 import BookPage from "./screens/BookPage";
 import ReadingListPage from "./screens/ReadingListPage";
+import FinishedPage from "./screens/FinishedPage";
 import NotFoundPage from "./screens/NotFoundPage";
 import "./App.css";
 import { ErrorBoundary } from "react-error-boundary";
@@ -30,6 +31,7 @@ function AppRoutes() {
         <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/books/:bookId" element={<BookPage />} />
         <Route path="/list" element={<ReadingListPage />} />
+        <Route path="/finished" element={<FinishedPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </ErrorBoundary>
