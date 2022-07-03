@@ -18,6 +18,7 @@ export interface ReadingListItem {
   endTime: number;
   bookId: string;
   book: IBook;
+  note: string;
 }
 
 export interface IBooks {

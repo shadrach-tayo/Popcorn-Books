@@ -1,6 +1,7 @@
+import { useMemo } from "react";
 import { IBook } from "../../api/types";
 import { useGetter, useSetter } from "../hooks";
-import { addBook, clear, markAsRead, removeBook, removeFromRead } from "./reducer";
+import { addBook, clear, markAsRead, removeBook, removeFromRead, updateNote } from "./reducer";
 
 export function useGetListItem(id: string) {
   const { list } = useGetter((state) => state.list);
@@ -15,9 +16,16 @@ export function useGetList() {
 export function useAddListItem() {
   const dispatch = useSetter();
   const add = (book: IBook) => {
-    dispatch(addBook({ book, id: book.id, bookId: book.id, startTime: Date.now(), endTime: 0, }))
+    dispatch(addBook({ book, id: book.id, bookId: book.id, startTime: Date.now(), endTime: 0, note: "" }))
   }
   return add;
+}
+
+export function useUpdateNote() {
+  const dispatch = useSetter();
+  return useMemo(() => (id: string, note: string) => {
+    dispatch(updateNote({ id, note }))
+  }, [dispatch])
 }
 
 export function useMarkAsRead() {
