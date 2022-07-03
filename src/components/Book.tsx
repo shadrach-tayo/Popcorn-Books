@@ -28,7 +28,7 @@ export default function Book({ book }: { book: IBook }) {
           </div>
         </div>
       </Link>
-      <div className="absolute top-3 right-3 md:top-0 md:right-0 md:-mr-5 md:-mt-5">
+      <div className="absolute top-0 -right-5 md:top-5 md:right-0 md:-mr-5 md:-mt-5 h-full">
         <ActionButton book={book} />
       </div>
     </div>

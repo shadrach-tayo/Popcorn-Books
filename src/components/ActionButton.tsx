@@ -1,22 +1,23 @@
 import { ReactNode } from "react";
-import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
+import { FaCheckCircle, FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import { IBook } from "../api/types";
-import { useAddListItem, useGetListItem, useRemoveListItem } from "../state/list/hooks";
+import { useAddListItem, useGetListItem, useMarkAsRead, useRemoveFromRead, useRemoveListItem } from "../state/list/hooks";
 
 export default function ActionButton({ book }: { book: IBook }) {
-  const readBook = useAddListItem();
+  const addToList = useAddListItem();
   const removeBook = useRemoveListItem();
   const listItem = useGetListItem(book.id);
+  const markAsRead = useMarkAsRead();
+  const removeFromRead = useRemoveFromRead();
 
   const listed = !!listItem;
   return (
-    <>
-      {listed ? (
-        <IconButton onClick={() => removeBook(book.id)} Icon={<FaMinusCircle />} />
-      ) : (
-          <IconButton onClick={() => readBook(book)} Icon={<FaPlusCircle />} />
-      )}
-    </>
+    <div className="flex flex-col justify-evenly items-center h-full">
+      {!listed && <IconButton onClick={() => addToList(book)} Icon={<FaPlusCircle />} />}
+      {listed && listItem?.endTime === 0 && <IconButton onClick={() => markAsRead(listItem.id)} Icon={<FaCheckCircle />} />}
+      {listed && listItem?.endTime !== 0 && <IconButton onClick={() => removeFromRead(listItem?.id)} Icon={<FaCheckCircle />} />}
+      {listed  && <IconButton onClick={() => removeBook(book.id)} Icon={<FaMinusCircle />} />}
+    </div>
   );
 }
 

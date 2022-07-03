@@ -12,6 +12,13 @@ export interface IBook {
   };
 }
 
+export interface ReadingListItem {
+  id: string;
+  startTime: number;
+  endTime: number;
+  bookId: string;
+  book: IBook;
+}
 
 export interface IBooks {
   kind: string;

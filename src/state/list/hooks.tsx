@@ -1,10 +1,10 @@
 import { IBook } from "../../api/types";
 import { useGetter, useSetter } from "../hooks";
-import { addBook, clear, removeBook } from "./reducer";
+import { addBook, clear, markAsRead, removeBook, removeFromRead } from "./reducer";
 
 export function useGetListItem(id: string) {
   const { list } = useGetter((state) => state.list);
-  return list.find(book => book.id === id)
+  return list.find(item => item.bookId === id)
 }
 
 export function useGetList() {
@@ -15,10 +15,23 @@ export function useGetList() {
 export function useAddListItem() {
   const dispatch = useSetter();
   const add = (book: IBook) => {
-    dispatch(addBook({ book }))
+    dispatch(addBook({ book, id: book.id, bookId: book.id, startTime: Date.now(), endTime: 0, }))
   }
-
   return add;
+}
+
+export function useMarkAsRead() {
+  const dispatch = useSetter();
+  return (id: string) => {
+    dispatch(markAsRead({ id }))
+  }
+}
+
+export function useRemoveFromRead() {
+  const dispatch = useSetter();
+  return (id: string) => {
+    dispatch(removeFromRead({ id }))
+  }
 }
 
 export function useRemoveListItem() {

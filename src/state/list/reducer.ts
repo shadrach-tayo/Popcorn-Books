@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IBook } from "../../api/types";
+import { ReadingListItem } from "../../api/types";
 
 interface State {
-  list: IBook[];
+  list: ReadingListItem[];
 }
 
 const initialState: State = {
@@ -16,19 +16,41 @@ const slice = createSlice({
     clear: () => initialState,
     addBook: (
       state: State,
-      { payload }: PayloadAction<{book: IBook }>
+      { payload }: PayloadAction<ReadingListItem>
     ) => {
-      const exists = state.list.some(item => item.id === payload.book.id)
-      state.list = exists ? state.list : state.list.concat(payload.book);
+      const exists = state.list.some(item => item.id === payload.bookId)
+      state.list = exists ? state.list : state.list.concat(payload);
+    },
+    markAsRead: (
+      state: State,
+      { payload }: PayloadAction<{ id: string }>
+    ) => {
+      state.list = state.list.map(item => {
+        if (item.id === payload.id) {
+          return { ...item, endTime: Date.now() }
+        }
+        return item
+      })
+    },
+    removeFromRead: (
+      state: State,
+      { payload }: PayloadAction<{ id: string }>
+    ) => {
+      state.list = state.list.map(item => {
+        if (item.id === payload.id) {
+          return { ...item, endTime: 0 }
+        }
+        return item
+      })
     },
     removeBook: (
       state: State,
       { payload }: PayloadAction<{ id: string }>
     ) => {
-       state.list = state.list.filter(book => book.id !== payload.id)
+      state.list = state.list.filter(item => item.bookId !== payload.id)
     },
   },
 });
 
 export default slice.reducer;
-export const { addBook, removeBook, clear } = slice.actions;
+export const { addBook, markAsRead, removeFromRead, removeBook, clear } = slice.actions;

@@ -3,12 +3,10 @@ import { useBook } from "../api/books";
 import ActionButton from "../components/ActionButton";
 import { ErrorMessage } from "../components/lib";
 import Loader from "../components/Loader";
-import { useGetListItem } from "../state/list/hooks";
 
 export default function BookPage() {
   const params = useParams<{ bookId: string }>();
-  const listItem = useGetListItem(params.bookId!);
-  const { data = listItem, isFetching, isError, isSuccess, error } = useBook(params.bookId!);
+  const { data, isFetching, isError, isSuccess, error } = useBook(params.bookId!);
   const book = data?.volumeInfo;
 
   if (isError) return <ErrorMessage error={error} />
@@ -32,7 +30,7 @@ export default function BookPage() {
           </p>
         </div>
       </div>
-      <div className="absolute top-3 right-3 md:top-0 md:right-0 md:-mr-5 md:-mt-5">
+      <div className="absolute top-3 right-3 md:top-0 md:right-0 md:-mr-5 md:-mt-5 h-full">
         {data && <ActionButton book={data} />}
       </div>
     </div>
