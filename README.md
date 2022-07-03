@@ -1,6 +1,18 @@
 # Context
-This Project is a solution my popcorn network interview task
+This Project started as a solution to my popcorn network interview project
 You can view the live app [here](https://ubiquitous-cuchufli-da85ef.netlify.app/)
+
+This project aims to showcase how to build a modern UI application with typescript and react
+while taking advantage of various patterns, modern tools and libraries. building reusable UI components etc
+This Repo shows how to use these patterns, tools and combine them together to build a modern react-typescript app
+- hooks
+- compound components
+- context api
+- redux toolkit
+- react-query (and it's caching strategies)
+- react suspense
+- Error handling with react-error-boundary
+- and more
 
 ## How to Run
 - Clone the github repo using this command `git clone https://github.com/shadrach-tayo/Popcorn-Books.git`
