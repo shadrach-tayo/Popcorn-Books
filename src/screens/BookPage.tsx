@@ -3,12 +3,14 @@ import { useBook } from "../api/books";
 import ActionButton from "../components/ActionButton";
 import { ErrorMessage } from "../components/lib";
 import Loader from "../components/Loader";
+import { formatDate } from "../helper";
+import { useGetListItem } from "../state/list/hooks";
 
 export default function BookPage() {
   const params = useParams<{ bookId: string }>();
   const { data, isFetching, isError, isSuccess, error } = useBook(params.bookId!);
   const book = data?.volumeInfo;
-
+  const listItem = useGetListItem(params.bookId ?? "");
   if (isError) return <ErrorMessage error={error} />
 
   if (isFetching && !data) return <Loader />;
@@ -25,6 +27,7 @@ export default function BookPage() {
           <h2 className="font-bold text-cornflower capitalize">{book?.title}</h2>
           <p className="italic font-semibold capitalize">{book?.authors?.[0]}</p>
           <p className="capitalize text-sm">{book?.publisher}</p>
+          {listItem && <p>{formatDate(listItem.startTime)} {listItem.endTime ? `- ${formatDate(listItem.endTime)}` : null}</p>}
           <p className="text-sm overflow-hidden">
             {book?.description ?? ''}
           </p>
