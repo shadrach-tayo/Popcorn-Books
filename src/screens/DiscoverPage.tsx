@@ -1,3 +1,4 @@
+import { SyntheticEvent } from "react";
 import { FaSearch, FaSpinner } from "react-icons/fa";
 import { IoIosClose, IoIosCloseCircleOutline } from "react-icons/io";
 import { useBookSearch } from "../api/books";
@@ -12,11 +13,14 @@ export default function DiscoverPage() {
   const [queryKey] = useDebouncer(query, 500);
   const { data, isFetching, isError, isSuccess } = useBookSearch(queryKey);
 
-  const clearSearch = () => query && setQuery("");
+  const clearSearch = (event: SyntheticEvent) => {
+    event.preventDefault();
+    query && setQuery("");
+  }
 
   return (
     <div className="mx-5 md:mx-0">
-      <form className="flex items-center justify-between m-0 md:ml-3 md:mr-2 mb-8 bg-mercury bg-opacity-40 p-2 hover:shadow-card">
+      <div className="flex items-center justify-between m-0 md:ml-3 md:mr-2 mb-8 bg-mercury bg-opacity-40 p-2 hover:shadow-card">
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -39,7 +43,7 @@ export default function DiscoverPage() {
             <FaSearch />
           )}
         </button>
-      </form>
+      </div>
       {isFetching && <Loader />}
       {isSuccess && data?.length === 0 && <h2 className="text-center">No search results found!!!</h2>}
       {!isFetching && !data && (

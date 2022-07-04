@@ -9,8 +9,11 @@ export default function FinishedPage() {
     return (
       <div className="flex flex-col items-center gap-y-2 w-full">
         <h2 className="text-center">You have not finished any book yet!!!</h2>
+        <Link to="../list" className="underline">
+          Check reading lists 📚
+        </Link>
         <Link to="../discover" className="underline">
-          Discover books to read now 😊
+          Discover books to read now 🔎
         </Link>
       </div>
     )

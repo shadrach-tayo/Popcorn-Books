@@ -14,12 +14,12 @@ export default function ListItemNotes({ listItem }: { listItem: ReadingListItem 
   }, [debouncedNote, listItem.id, updateNote]);
 
   return (
-    <div className="mt-2">
+    <div className="mt-10">
       <div className="flex gap-4 items-center mb-1">
         <h1>Notes </h1>
         {/* <FaSpinner className="animate-spin" /> */}
       </div>
-      <textarea value={note} onChange={e => setNote(e.target.value)} className="w-full h-140 p-2 border-2 border-black bg-sand focus:outline-none" />
+      <textarea value={note} onChange={e => setNote(e.target.value)} className="w-full h-140 p-2 bg-sand" />
     </div>
   )
 }

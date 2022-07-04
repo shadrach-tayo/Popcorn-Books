@@ -10,7 +10,7 @@ export default function ReadingListPage() {
       <div className="flex flex-col items-center gap-y-2 w-full">
         <h2 className="text-center">Your reading List is empty</h2>
         <Link to="../discover" className="underline">
-          Discover books to read now 😊
+          Discover books to read now 🔎
         </Link>
       </div>
     )

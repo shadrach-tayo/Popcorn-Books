@@ -1,3 +1,4 @@
+import { IoIosCalendar } from "react-icons/io";
 import { useParams } from "react-router";
 import { useBook } from "../api/books";
 import ActionButton from "../components/ActionButton";
@@ -29,7 +30,7 @@ export default function BookPage() {
             <h2 className="font-bold text-cornflower capitalize">{book?.title}</h2>
             <p className="italic font-semibold capitalize">{book?.authors?.[0]}</p>
             <p className="capitalize text-sm">{book?.publisher}</p>
-            {listItem && <p>{formatDate(listItem.startTime)} {listItem.endTime ? `- ${formatDate(listItem.endTime)}` : null}</p>}
+            {listItem && <p className="flex items-center gap-2"><IoIosCalendar className="inline" /> {formatDate(listItem.startTime)} {listItem.endTime ? `- ${formatDate(listItem.endTime)}` : null}</p>}
             <p className="text-sm overflow-hidden">
               {book?.description ?? ''}
             </p>
