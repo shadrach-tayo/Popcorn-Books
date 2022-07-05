@@ -13,22 +13,23 @@ export default function ActionButton({ book }: { book: IBook }) {
   const listed = !!listItem;
   return (
     <div className="flex flex-col justify-evenly items-center h-full">
-      {!listed && <IconButton onClick={() => addToList(book)} Icon={<FaPlusCircle />} />}
-      {listed && listItem?.endTime === 0 && <IconButton onClick={() => markAsRead(listItem.id)} Icon={<FaCheckCircle />} />}
-      {listed && listItem?.endTime !== 0 && <IconButton onClick={() => removeFromRead(listItem?.id)} Icon={<FaBook />} />}
-      {listed  && <IconButton onClick={() => removeBook(book.id)} Icon={<FaMinusCircle />} />}
+      {!listed && <IconButton label="add to list" onClick={() => addToList(book)} Icon={<FaPlusCircle />} />}
+      {listed && listItem?.endTime === 0 && <IconButton label="mark as read" onClick={() => markAsRead(listItem.id)} Icon={<FaCheckCircle />} />}
+      {listed && listItem?.endTime !== 0 && <IconButton label="mark as unread" onClick={() => removeFromRead(listItem?.id)} Icon={<FaBook />} />}
+      {listed  && <IconButton label="remove from list" onClick={() => removeBook(book.id)} Icon={<FaMinusCircle />} />}
     </div>
   );
 }
 
 function IconButton(props: {
   classes?: string;
-  label?: string;
+  label: string;
   Icon: ReactNode;
   onClick?: () => void;
 }) {
   return (
     <button
+      aria-label={props.label}
       onClick={() => props?.onClick && props.onClick()}
       className={`border-2 border-mercury border-opacity-40 p-2 rounded-full ${props.classes ?? ""
         }`}

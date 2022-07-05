@@ -1,7 +1,8 @@
 import { server } from "../../test/server"
 import { client } from "../client"
-import { API_URL } from "../constants"
+import { APIKEY, API_URL } from "../constants"
 import { rest } from "../../test/server"
+import { getRandomBook } from "../../test/data/booksDb"
 
 test("It sends request to server", async () => {
   const endpoint = `test`
@@ -15,6 +16,19 @@ test("It sends request to server", async () => {
 
   const result = await client(`${API_URL}/${endpoint}`)
   expect(result).toMatchObject(mockResult)
+})
+
+test("Server returns a list of books", async () => {
+  const endpoint = `q=joy&maxResult=5&key=${APIKEY}`
+  const result = await client(`${API_URL}?${endpoint}`)
+  expect(result.kind).toEqual('books#volumes')
+})
+
+test("Server returns a single book", async () => {
+  const book = getRandomBook();
+  const endpoint = `/${book.id}?key=${APIKEY}`
+  const result = await client(`${API_URL}${endpoint}`)
+  expect(result).toMatchObject(book)
 })
 
 test("Promise rejects correctly if there's an error", async () => {

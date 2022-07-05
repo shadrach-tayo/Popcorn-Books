@@ -15,10 +15,9 @@ export function useGetList() {
 
 export function useAddListItem() {
   const dispatch = useSetter();
-  const add = (book: IBook) => {
+  return (book: IBook) => {
     dispatch(addBook({ book, id: book.id, bookId: book.id, startTime: Date.now(), endTime: 0, note: "" }))
   }
-  return add;
 }
 
 export function useUpdateNote() {
@@ -44,18 +43,14 @@ export function useRemoveFromRead() {
 
 export function useRemoveListItem() {
   const dispatch = useSetter();
-  const remove = (id: string) => {
+  return (id: string) => {
     dispatch(removeBook({ id }))
   }
-
-  return remove;
 }
 
 export function useClearReadingList() {
   const dispatch = useSetter();
-  const reset = () => {
+  return () => {
     dispatch(clear())
   }
-
-  return reset;
 }
