@@ -7,7 +7,6 @@ import { IBook } from "./types";
 
 export const queryClient = new QueryClient();
 
-
 enum tags {
   book = "book",
   bookSearch = "bookSearch",
