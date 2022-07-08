@@ -24,7 +24,9 @@ export default function DiscoverPage() {
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          type="text"
+          type="search"
+          id="search"
+          name="search"
           className="w-full bg-transparent focus:outline-none"
           placeholder="Search books..."
         />
@@ -54,7 +56,9 @@ export default function DiscoverPage() {
       {query && !isFetching && !isError && (
         <ul className="list-style-none grid px-2 gap-y-8">
           {data?.map((book) => (
-            <Book key={book.id} book={book} />
+            <li key={book.id} aria-label={book.volumeInfo.title}>
+              <Book key={book.id} book={book} />
+            </li>
           ))}
         </ul>
       )}

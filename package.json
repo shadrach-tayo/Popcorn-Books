@@ -1,8 +1,9 @@
 {
-  "name": "popcorn-books",
+  "name": "localhost:3000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "-": "^0.0.1",
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -11,6 +12,8 @@
     "@types/node": "^16.11.41",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
+    "cross-env": "^7.0.3",
+    "D": "^1.0.0",
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -28,8 +31,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:cli": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cy:install": "cypress install",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "test:e2e": "start-server-and-test start:cli http://localhost:3000/list cy:open",
+    "test:e2e:run": "start-server-and-test serve http://localhost:8811/list cy:run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,10 +60,16 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/cypress": "^8.0.3",
     "autoprefixer": "^10.4.7",
+    "cypress": "^10.3.0",
+    "cypress-hmr-restarter": "^2.0.3",
+    "cypress-msw-interceptor": "^2.0.3",
+    "eslint-plugin-cypress": "^2.12.1",
     "msw": "^0.43.0",
     "node-match-path": "^0.6.3",
     "postcss": "^8.4.14",
+    "start-server-and-test": "^1.14.0",
     "tailwindcss": "^3.1.3"
   }
 }

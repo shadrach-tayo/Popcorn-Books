@@ -13,7 +13,9 @@ export default function FilteredListItems(props: { predicate: (items: ReadingLis
   return (
     <ul className="list-style-none grid px-2 gap-8">
       {items.map((item) => (
-        <Book key={item.id} book={item.book} />
+        <li key={item.id} aria-label={item.book.volumeInfo.title}>
+          <Book key={item.id} book={item.book} />
+        </li>
       ))}
     </ul>
   )

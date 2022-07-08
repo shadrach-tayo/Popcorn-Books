@@ -32,7 +32,7 @@ export const handlers = [
 
 // const getToken = (req: Request) => req.headers.get('Authorization')?.replace('Bearer ', '')
 
-const errors = {
+export const errors = {
   noBook: {
     error: {
       code: 400,
