@@ -1,5 +1,4 @@
 # Context
-This Project started as a solution to my popcorn network interview project
 You can view the live app [here](https://ubiquitous-cuchufli-da85ef.netlify.app/)
 
 This project aims to showcase how to build a modern UI application with typescript and react
